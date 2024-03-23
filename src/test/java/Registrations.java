@@ -9,15 +9,15 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class Registrations {
-    WebDriver wd;
-
-    @BeforeMethod
-    public void init(){
-        wd = new ChromeDriver();
-        wd.navigate().to("https://telranedu.web.app/home");
-        wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    }
+public class Registrations extends TestBase{
+//    WebDriver wd;
+//
+//    @BeforeMethod
+//    public void init(){
+//        wd = new ChromeDriver();
+//        wd.navigate().to("https://telranedu.web.app/home");
+//        wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+//    }
 @Test
 public void RegPositive(){
     wd.findElement(By.xpath("//*[.='LOGIN']")).click();
@@ -35,7 +35,29 @@ public void RegPositive(){
     password.sendKeys("098!7654321$Aa");
 
     wd.findElement(By.xpath("//button[2]")).click();
-    Assert.assertTrue(wd.findElements(By.xpath("//button")).size() > 0);
+    //Assert.assertTrue(wd.findElements(By.xpath("//button")).size() > 0);
+    pause(5000);
+    Assert.assertTrue(isElementPresent(By.xpath("//button")));
+}
+
+@Test
+public void NegTestWrong(){
+    int i = (int)(System.currentTimeMillis()/1000)%3600;
+    String email = "hanna" + i + "g.com", password = "098!7654321$Aa";
+        openLoginForm();
+        fillLoginForm(email, password);
+        submitRegistration();
+
+}
+
+@Test
+public void NegTestWrongPassword(){
+    int i = (int)(System.currentTimeMillis()/1000)%3600;
+    String email = "hanna" + i + "@g.com", password = "----------123-------";
+    openLoginForm();
+    fillLoginForm(email, password);
+    submitRegistration();
+
 }
     @AfterMethod
     public void tearDown(){}
