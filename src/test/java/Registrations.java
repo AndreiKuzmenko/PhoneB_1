@@ -1,13 +1,8 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
 
 public class Registrations extends TestBase{
 //    WebDriver wd;
@@ -52,8 +47,8 @@ public void NegTestWrong(){
 
 @Test
 public void NegTestWrongPassword(){
-    int i = (int)(System.currentTimeMillis()/1000)%3600;
-    String email = "hanna" + i + "@g.com", password = "----------123-------";
+
+    String email = "hanna@g.com", password = "----------123-------";
     openLoginForm();
     fillLoginForm(email, password);
     submitRegistration();

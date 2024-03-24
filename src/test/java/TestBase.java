@@ -57,7 +57,16 @@ public class TestBase {
      public void submitLogin(){
         click(By.xpath("//button[1]"));
      }
+
     public boolean isElementPresent(By locator){
-       return wd.findElements(locator).size() > 0;
+        return wd.findElements(locator).size() > 0;
+    }
+
+    public  void logout(){
+        click(By.xpath("//*[.='Sign Out']"));
+    }
+
+    public  boolean isLogged(){
+       return isElementPresent(By.xpath("//*[.='Sign Out']"));
     }
 }
