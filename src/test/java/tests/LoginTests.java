@@ -49,9 +49,9 @@ public class LoginTests extends TestBase{
     public void NegTestWrongEmailNew() {
         int i = (int) (System.currentTimeMillis() / 1000) % 3600;
         String email = "hanna" + i + "@@@g.com", password = "098!7654321$Aa";
-        openLoginForm();
-        fillLoginForm(email, password);
-        submitLogin();
+        app.getUser().openLoginForm();
+        app.getUser().fillLoginForm(email, password);
+        app.getUser().submitLogin();
     }
     @AfterMethod
     public void tearDown(){}
