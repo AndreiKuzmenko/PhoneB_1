@@ -1,5 +1,6 @@
 package tests;
 
+import model.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -36,6 +37,20 @@ public class Registrations extends TestBase{
 //    pause(5000);
 //    Assert.assertTrue(isElementPresent(By.xpath("//button")));
 //}
+    @Test
+    public void registrationPositive()
+    {
+        int i = (int)(System.currentTimeMillis()/1000)%3600;
+         User user = new User()
+                 .withEmail("hanna" + i + "@g.com")
+                 .withPassword("098!7654321$Aa")
+                 ;
+        app.getUser().openLoginForm();
+        app.getUser().fillLoginForm(user);
+        app.getUser().submitRegistration();
+        app.getUser().pause(5000);
+        Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//button")));
+    }
 
 @Test
 public void NegTestWrong(){
@@ -43,7 +58,8 @@ public void NegTestWrong(){
     String email = "hanna" + i + "g.com", password = "098!7654321$Aa";
        app.getUser().openLoginForm();
        app.getUser().fillLoginForm(email, password);
-        app.getUser().submitRegistration();
+       app.getUser().submitRegistration();
+
 
 }
 
